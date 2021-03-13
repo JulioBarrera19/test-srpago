@@ -3,11 +3,12 @@ const middleware = require('./middlewares');
 
 const apiFilmsRouter = require('./api/films');
 const apiCitysRouter = require('./api/citys');
-const apiRelFilmsCitysRouter = require('./api/rel_films_citys');
+const apiFilmsPresentationsRouter = require('./api/films_presentations');
+const apiReservationsRouter = require('./api/reservations');
 
-// router.use('/films', middleware.checkToken, apiFilmsRouter);
 router.use('/films', apiFilmsRouter);
 router.use('/citys', apiCitysRouter);
-router.use('/films-citys', apiRelFilmsCitysRouter);
+router.use('/films-presentations', apiFilmsPresentationsRouter);
+router.use('/reservations', middleware.checkToken, apiReservationsRouter);
 
 module.exports= router;

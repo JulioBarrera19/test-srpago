@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
-const { Film, RelFilmsCitys, City } = require('../../db');
+const { Film, FilmPresentation } = require('../../db');
 
 router.get('/',  async (req, res) => {
     const { city } = req.query
     if(city){
         const films = await Film.findAll({
             include: [{
-                model: RelFilmsCitys,
+                model: FilmPresentation,
                 where: { cityId: city}
             }]
         });

@@ -30,7 +30,12 @@ router.post('/login', async (req, res) => {
         if (checkPassword) {
             res.json({
                 success: true,
-                userToken: createToken(user)
+                data: {
+                    userId: user.id,
+                    username: user.username,
+                    email: user.email,
+                    userToken: createToken(user)
+                }
             })
         }else {
             res.json({
@@ -50,7 +55,7 @@ const createToken = (user) => {
     const payload = {
         userId: user.id,
         createAt: moment().unix(),
-        expiredAt: moment().add(5, 'minutes').unix()
+        expiredAt: moment().add(20, 'minutes').unix()
     }
     return jwt.encode(payload, 'llave unica')
 }
